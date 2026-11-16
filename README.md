@@ -49,9 +49,8 @@ pip install -r requirements.txt
 ## 2. Configure the AI API
 
 1. Create an API key in your Groq account.
-2. Copy `.env.example` and rename the copy to `.env`.
-3. Put your key in `GROQ_API_KEY`.
-4. Keep `.env` private. It is excluded by `.gitignore`.
+2. Put your key in `GROQ_API_KEY`.
+3. Keep `.env` private. It is excluded by `.gitignore`.
 
 Example:
 
@@ -136,24 +135,6 @@ The API generates AI remarks on create and update. If the API key is missing or 
 - PATCH `http://127.0.0.1:8000/api/patients/1/` to change a field.
 - DELETE `http://127.0.0.1:8000/api/patients/1/`
 
-## 7. Before GitHub submission
-
-- Never upload `.env`, API keys, passwords or `db.sqlite3`.
-- `.gitignore` already excludes these files.
-- Add screenshots to your repository only if they contain no personal or sensitive data.
-- Test the project from a fresh virtual environment before recording your demo.
-
-## 8. Suggested video walkthrough
-
-1. Explain the technology stack and project structure.
-2. Start the Django server and open the dashboard.
-3. Add valid records and show AI-generated remarks.
-4. Demonstrate the invalid email, impossible date and future DOB errors.
-5. Show the patient list.
-6. Edit one email to `gokul@infocare.com`.
-7. Delete one record and show the updated list.
-8. Open Postman and demonstrate the API endpoints.
-9. Explain `patients/services.py` (external AI call), `serializers.py` (API validation), `forms.py` (web validation), and `models.py` (database structure).
 
 ## Medical safety
 
