@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | CareTrack{% endblock %}
+{% block content %}
+<div class="mb-4">
+  <a href="{% url 'patient_list' %}" class="text-decoration-none small">← Back to records</a>
+  <p class="eyebrow mt-3 mb-1">PATIENT INFORMATION</p>
+  <h1 class="h2 fw-bold mb-1">{{ page_title }}</h1>
+  <p class="text-secondary mb-0">Enter the details exactly as provided. Invalid values will be rejected.</p>
+</div>
+<div class="card border-0 shadow-sm form-card">
+  <div class="card-body p-4 p-lg-5">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+      <div class="row g-3">
+        {% for field in form %}
+          <div class="col-md-6">
+            <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+            {% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="alert alert-info mt-4 mb-4 small">
+        After the form passes validation, the application requests educational remarks from the configured external AI API.
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary px-4">{{ submit_label }}</button>
+        <a href="{% url 'patient_list' %}" class="btn btn-light px-4">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

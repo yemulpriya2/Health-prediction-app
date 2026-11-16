@@ -1,0 +1,17 @@
+:root { --ink: #172b4d; --muted: #667085; --blue: #2457d6; }
+body { background: #f5f7fb; color: var(--ink); font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.app-navbar { background: #142b52; }
+.brand-dot { color: #60d6c3; font-size: .7em; }
+.eyebrow { color: #5474b8; letter-spacing: .12em; font-size: .7rem; font-weight: 800; }
+.stat-card { background: #fff; border: 1px solid #e8edf5; border-radius: 14px; padding: 1.2rem 1.4rem; box-shadow: 0 5px 18px rgba(22, 42, 80, .04); }
+.stat-label { color: var(--muted); font-size: .85rem; }
+.stat-number { font-size: 2rem; font-weight: 800; line-height: 1.25; margin: .2rem 0; }
+.card { border-radius: 14px; }
+.table thead th { color: #64748b; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; border-bottom-color: #e9edf4; }
+.table td { font-size: .88rem; }
+.remarks-cell { min-width: 230px; max-width: 330px; color: #56647a; font-size: .82rem !important; }
+.form-card { max-width: 850px; }
+.form-control { border-color: #dce3ee; padding: .65rem .8rem; }
+.form-control:focus { border-color: #7295ec; box-shadow: 0 0 0 .2rem rgba(36, 87, 214, .1); }
+.btn-primary { background: var(--blue); border-color: var(--blue); }
+.medical-note { color: #8a94a6; font-size: .75rem; text-align: center; }

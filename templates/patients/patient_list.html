@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Patient records | CareTrack{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+  <div>
+    <p class="eyebrow mb-1">HEALTH MANAGEMENT</p>
+    <h1 class="h2 fw-bold mb-1">Patient records</h1>
+    <p class="text-secondary mb-0">Create, review and manage blood-test records.</p>
+  </div>
+  <a href="{% url 'patient_create' %}" class="btn btn-primary px-4">+ Add patient</a>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-lg-4">
+    <div class="stat-card">
+      <div class="stat-label">Total saved records</div>
+      <div class="stat-number">{{ total_count }}</div>
+      <div class="small text-secondary">Patient entries in your database</div>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-3 p-lg-4">
+    <form method="get" class="row g-2 mb-3">
+      <div class="col">
+        <input type="search" name="q" value="{{ query }}" class="form-control" placeholder="Search by patient name or email">
+      </div>
+      <div class="col-auto"><button class="btn btn-outline-primary">Search</button></div>
+      {% if query %}<div class="col-auto"><a href="{% url 'patient_list' %}" class="btn btn-light">Clear</a></div>{% endif %}
+    </form>
+    <div class="table-responsive">
+      <table class="table align-middle table-hover">
+        <thead><tr>
+          <th>Patient</th><th>Date of birth</th><th>Email</th>
+          <th>Glucose</th><th>Haemoglobin</th><th>Cholesterol</th><th>AI remarks</th><th>Actions</th>
+        </tr></thead>
+        <tbody>
+        {% for patient in patients %}
+          <tr>
+            <td class="fw-semibold text-nowrap">{{ patient.full_name }}</td>
+            <td class="text-nowrap">{{ patient.date_of_birth|date:"d.m.Y" }}</td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.glucose }}</td><td>{{ patient.haemoglobin }}</td><td>{{ patient.cholesterol }}</td>
+            <td class="remarks-cell">{{ patient.remarks|default:"No remarks yet" }}</td>
+            <td class="text-nowrap">
+              <a href="{% url 'patient_update' patient.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+              <form method="post" action="{% url 'patient_delete' patient.pk %}" class="d-inline" onsubmit="return confirm('Delete this patient record?');">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="8" class="text-center py-5 text-secondary">No records found. Add your first patient record.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
